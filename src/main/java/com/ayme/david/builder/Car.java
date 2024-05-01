@@ -24,29 +24,27 @@ public class Car {
         this.km = km;
     }
     
-    public static class Builder{
+    public static class Builder implements IBuilder{
         private String name;
-        private int km; 
+        private int km;
 
-        public Builder(){
-
-        }
-
-        public Builder setName(String name){
+        @Override
+        public IBuilder setName(String name) {
             this.name = name;
             return this;
         }
-
-        public Builder setKM(int num){
-            this.km = num;
+        @Override
+        public IBuilder setKM(int km) {
+            this.km = km;
             return this;
         }
+        @Override
+        public Car build() {
+           Car c = new Car();
+           c.setKm(this.km);
+           c.setName(this.name);
+           return c;
+        } 
 
-        public Car build(){
-            Car car = new Car();
-            car.setName(this.name);
-            car.setKm(this.km);
-            return car;
-        }
     }
 }
